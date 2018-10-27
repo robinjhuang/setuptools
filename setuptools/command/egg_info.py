@@ -32,6 +32,9 @@ from setuptools.glob import glob
 
 from setuptools.extern import packaging
 
+from pkg_resources.pkg_deprecation_warning import PkgDeprecationWarning
+
+
 
 def translate_pattern(glob):
     """
@@ -696,7 +699,7 @@ def get_pkg_info_revision():
     Get a -r### off of PKG-INFO Version in case this is an sdist of
     a subversion revision.
     """
-    warnings.warn("get_pkg_info_revision is deprecated.", DeprecationWarning)
+    warnings.warn("get_pkg_info_revision is deprecated.", PkgDeprecationWarning)
     if os.path.exists('PKG-INFO'):
         with io.open('PKG-INFO') as f:
             for line in f:

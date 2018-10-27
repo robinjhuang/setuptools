@@ -26,6 +26,7 @@ from setuptools import windows_support
 from setuptools.monkey import get_unpatched
 from setuptools.config import parse_configuration
 import pkg_resources
+from pkg_resources.pkg_deprecation_warning import PkgDeprecationWarning
 from .py36compat import Distribution_parse_config_files
 
 __import__('setuptools.extern.packaging.specifiers')
@@ -33,7 +34,7 @@ __import__('setuptools.extern.packaging.version')
 
 
 def _get_unpatched(cls):
-    warnings.warn("Do not call this function", DeprecationWarning)
+    warnings.warn("Do not call this function", PkgDeprecationWarning)
     return get_unpatched(cls)
 
 
@@ -980,7 +981,7 @@ class Feature:
             "Features are deprecated and will be removed in a future "
             "version. See https://github.com/pypa/setuptools/issues/65."
         )
-        warnings.warn(msg, DeprecationWarning, stacklevel=3)
+        warnings.warn(msg, PkgDeprecationWarning, stacklevel=3)
 
     def __init__(
             self, description, standard=False, available=True,

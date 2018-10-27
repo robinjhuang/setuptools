@@ -40,6 +40,7 @@ import textwrap
 import itertools
 import inspect
 from pkgutil import get_importer
+from pkg_resources.pkg_deprecation_warning import PkgDeprecationWarning
 
 try:
     import _imp
@@ -2335,7 +2336,7 @@ class EntryPoint:
             warnings.warn(
                 "Parameters to load are deprecated.  Call .resolve and "
                 ".require separately.",
-                DeprecationWarning,
+                PkgDeprecationWarning,
                 stacklevel=2,
             )
         if require:

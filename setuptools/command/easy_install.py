@@ -62,6 +62,7 @@ from pkg_resources import (
     VersionConflict, DEVELOP_DIST,
 )
 import pkg_resources.py31compat
+from pkg_resources.pkg_deprecation_warning import PkgDeprecationWarning
 
 __metaclass__ = type
 
@@ -2077,7 +2078,7 @@ class ScriptWriter:
     @classmethod
     def get_script_args(cls, dist, executable=None, wininst=False):
         # for backward compatibility
-        warnings.warn("Use get_args", DeprecationWarning)
+        warnings.warn("Use get_args", PkgDeprecationWarning)
         writer = (WindowsScriptWriter if wininst else ScriptWriter).best()
         header = cls.get_script_header("", executable, wininst)
         return writer.get_args(dist, header)
@@ -2085,7 +2086,7 @@ class ScriptWriter:
     @classmethod
     def get_script_header(cls, script_text, executable=None, wininst=False):
         # for backward compatibility
-        warnings.warn("Use get_header", DeprecationWarning, stacklevel=2)
+        warnings.warn("Use get_header", PkgDeprecationWarning, stacklevel=2)
         if wininst:
             executable = "python.exe"
         return cls.get_header(script_text, executable)
@@ -2120,7 +2121,7 @@ class ScriptWriter:
     @classmethod
     def get_writer(cls, force_windows):
         # for backward compatibility
-        warnings.warn("Use best", DeprecationWarning)
+        warnings.warn("Use best", PkgDeprecationWarning)
         return WindowsScriptWriter.best() if force_windows else cls.best()
 
     @classmethod
@@ -2152,7 +2153,7 @@ class WindowsScriptWriter(ScriptWriter):
     @classmethod
     def get_writer(cls):
         # for backward compatibility
-        warnings.warn("Use best", DeprecationWarning)
+        warnings.warn("Use best", PkgDeprecationWarning)
         return cls.best()
 
     @classmethod
